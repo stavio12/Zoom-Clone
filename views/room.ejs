@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zoom Clone</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link type="text/css" rel="stylesheet" href="/public/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/public/style.css" />
+
+    <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4 text-center">
+            <h1 class="mb-3 text-center">Video Conference</h1>
+            <form action="#" class="mb-3" action="/room" method="POST">
+              <div class="form-group">
+                <label for="room">Room Name:</label>
+                <input name="room" type="text" class="form-control" id="email" placeholder="Club House" required />
+              </div>
+
+              <div class="form-group">
+                <label for="user">User Name:</label>
+                <input type="text" name="user" class="form-control" id="user" required />
+              </div>
+
+              <button type="submit" class="btn btn-success btn-block">Start Video Chat!</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="jquery-3.4.1.min.js"></script>
+  <script src="bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
+</html>
