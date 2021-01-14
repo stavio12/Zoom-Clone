@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
+const server = require("http").Server(app);
 const bodyParser = require("body-parser");
 const path = require("path");
-const server = require("http").Server(app);
 const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
+const dotenv = require("dotenv");
 const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
   debug: true,
@@ -19,14 +20,6 @@ app.set("view engine", "ejs");
 
 app.use("/peerjs", peerServer);
 
-function getUser(req, res, next) {
-  if (!req.body.user) {
-    res.redirect("/");
-  } else {
-    next();
-  }
-}
-
 app.get("/", (req, res) => {
   res.render("room");
 });
@@ -36,7 +29,7 @@ app.post("/", (req, res) => {
 });
 
 app.get("/:roomid/:room/", (req, res) => {
-  res.render("home", { room: req.params.room, user: req.params.user, roomID: req.params.roomid });
+  res.render("home", { room: req.params.room, roomID: req.params.roomid });
 });
 
 io.on("connection", (socket) => {
@@ -58,6 +51,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen("4000", () => {
-  console.log("server runnining on Port 4000");
-});
+server.listen(4000);
