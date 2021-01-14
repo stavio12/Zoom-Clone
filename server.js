@@ -2,14 +2,16 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
-const dotenv = require("dotenv");
 const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
   debug: true,
 });
+
+dotenv.config(__dirname, "config.env");
 
 app.use(express.static(__dirname));
 app.use(express.static("public"));
@@ -51,4 +53,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(4000);
+server.listen(process.env.PORT || 4000);
